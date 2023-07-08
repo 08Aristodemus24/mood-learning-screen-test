@@ -19,6 +19,7 @@ api endpoint that will process these credentials
 this login function implements a token-based authentication for users
 particularly with the use of json web tokens
 
+```
 login(){
 
     response = send request to an API endpoint http://<local host>/registration/token
@@ -33,6 +34,7 @@ login(){
         alert user that credentials are invalid, empty, or non existent
 
 }
+```
 
 react code I made from my other projects:
 
