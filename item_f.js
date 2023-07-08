@@ -141,7 +141,7 @@ function avg_eng_rate(users){
         let avg_eng_rate = new Array(num_of_posts).fill(0);
 
         for(let post of users['posts']){
-            avg_eng_rate[] = (post['comments'] * post['likes']) / num_of_posts;
+            avg_eng_rate[0] = (post['comments'] * post['likes']) / num_of_posts;
 
             avg_eng_rate.forEach((element, index) => {
 
