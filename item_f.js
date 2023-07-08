@@ -112,16 +112,8 @@ function avg_eng_rate(users){
     objects containing their userId, number of likes for each post, and
     number of comments
     
-    returns the average engagement rate for each 
-     e.g. for a post by a user
-
-    there are multiple users
-
-    each user has multiple posts
-
-    so I have to calculate the the avg_eng_for each users post
-
-    for eahc user maybe an object 
+    returns the average engagement rate for each. Once executed each user 
+    will now have the following information returned
     {
         id: 1,
         posts: [
@@ -137,22 +129,46 @@ function avg_eng_rate(users){
     
     for(let user of users){
         // get total num of posts of user
-        num_of_posts = user['posts'].length
-        let avg_eng_rate = new Array(num_of_posts).fill(0);
+        num_of_posts = user['posts'].length;
 
-        for(let post of users['posts']){
-            avg_eng_rate[0] = (post['comments'] * post['likes']) / num_of_posts;
-
-            avg_eng_rate.forEach((element, index) => {
-
-            });
+        // construct an empty array for the array of posts that will
+        // contain the id of user and each of their posts avg_eng_rate
+        let avg_eng_rate = (new Array(num_of_posts)).fill(new Object());
+        let user_avg_eng_rate = {
+            id: user['id'],
+            posts: []
         }
 
-        users_avg_eng_rate.push({
-            id: user['id'],
-            posts: 0
-        });
+        for(let i = 0; i < num_of_posts; ++i){
+            let temp = {};
+            temp['id'] = user['id'];
+            temp['avg_eng_rate'] = (user['posts'][i]['likes'] * user['posts'][i]['comments']) / num_of_posts;
+            user_avg_eng_rate['posts'].push(temp);
+
+            // console.log(temp);
+        }
+        // console.log('\n');
+        
+        // append new dicitonary/object of id and posts containign the id also 
+        // of user and their eachg of their posts average engagement rate
+        users_avg_eng_rate.push(user_avg_eng_rate);
     }
 
-
+    return users_avg_eng_rate;
 }
+
+
+
+function view_avg_eng(users_avg_eng_rate){
+
+    for(let user of users_avg_eng_rate){
+        console.log(`user ${user['id']}'s posts average engagement rate: `)
+        console.log(user['posts']);
+        console.log('\n');
+    }
+}
+
+
+
+const users_avg_eng_rate = avg_eng_rate(users);
+view_avg_eng(users_avg_eng_rate);
