@@ -1,6 +1,4 @@
- answer b, e, f
-
-login functionality explanation
+## ITEM B:
 
 pseudocode and explanation of user flow in login process:
 
@@ -10,7 +8,6 @@ and the password field as its most basic fields to enter personal credentials.
 the form will also contain a simple button that has an event listener binded to
 it that will call a function called login to send the credentials entered by user to the
 api endpoint that will process these credentials
-
 
 <form>
     <email or username field/>
@@ -162,45 +159,16 @@ react code I made from my other projects:
 
 
 
+when request is sent credentials will be caught by a function that 
+will process these tokens and do a look up in the database
 
+below is the python code I made that utilized django, django-rest-framework, and simple-jwt
+to return the token for the user that input their credentials, in order to use for future
+interactions in the website, that is only exclusive for access for a logged in user
 
-path('token', serializers.AdvocateTokenObtainPairView.as_view(), name='advocateTokenObtainPairView'),
+```path('token', serializers.AdvocateTokenObtainPairView.as_view(), name='advocateTokenObtainPairView'),```
 
-
-
-
-
-# Create your models here.
-class Advocate(AbstractBaseUser):
-    profile_img = models.ImageField(default=None)
-    email = models.EmailField(required=True, unique=True)
-
-    # used by the self.create_superuser() method
-    # of the UserManager class
-    REQUIRED_FIELDS = ['email']
-
-    def set_password(self, raw_password):
-        return super().set_password(raw_password)
-
-    def sampleMethod(self):
-        self.is_active
-
-        self.objects
-        self.pk
-        self.password
-        self.profile_img
-
-        self.REQUIRED_FIELDS
-        self.USERNAME_FIELD
-
-        self.is_anonymous
-        self.is_authenticated
-
-
-
-
-
-class AdvocateTokenObtainPairSerializer(TokenObtainPairSerializer):
+```class AdvocateTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
@@ -210,4 +178,4 @@ class AdvocateTokenObtainPairSerializer(TokenObtainPairSerializer):
         return token
 
 class AdvocateTokenObtainPairView(TokenObtainPairView):
-    serializer_class = AdvocateTokenObtainPairSerializer
+    serializer_class = AdvocateTokenObtainPairSerializer```
