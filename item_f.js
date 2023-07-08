@@ -133,7 +133,6 @@ function avg_eng_rate(users){
 
         // construct an empty array for the array of posts that will
         // contain the id of user and each of their posts avg_eng_rate
-        let avg_eng_rate = (new Array(num_of_posts)).fill(new Object());
         let user_avg_eng_rate = {
             id: user['id'],
             posts: []
